@@ -1,950 +1,116 @@
 <!DOCTYPE html>
-<html style="font-size: 12px;"><head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<title>K31LMP管理平台</title>
-	<link rel="stylesheet" type="text/css" href="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/layui.css">
-	<link rel="stylesheet" type="text/css" href="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/common.css">
-	<link rel="stylesheet" type="text/css" href="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/style.css">
-	<script type="text/javascript" src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/jQuery-2.2.0.min.js"></script>
-	<script type="text/javascript" src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/layui.all.js"></script><link id="layuicss-laydate" rel="stylesheet" href="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/laydate.css" media="all"><link id="layuicss-layer" rel="stylesheet" href="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/layer.css" media="all"><link id="layuicss-skincodecss" rel="stylesheet" href="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/code.css" media="all">
-
-	<!-- <script type="text/javascript" th:src="${ctx}+'/dot/js/lib/layui.js'"></script> -->
-
-	<link href="http://192.168.0.134:8080/kunchenapp/images/logo.ico" rel="shortcut icon" type="image/x-icon">
-</head>
-
-<body>
-	<div class="header_box">
-		<div class="header_left">
-			<h1 class="logo">
-				EAGLE<span>EYE</span>
-			</h1>
-			<span class="slogan">K31LMP管理平台</span>
-		</div>
-
-		<div class="header_center">
-			<a>
-				<img src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/dingwei.png" id="map_icon">
-				<span>定位管理</span>
-			</a>
-			<a>
-				<img src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/label_manage.png" id="label_icon">
-				<span>终端管理</span>
-			</a>
-			<a>
-				<img src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/station_icon.png" id="station_icon">
-				<span>基站管理</span>
-			</a>
-			<a>
-				<img src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/suanfa.png" id="set_icon">
-				<span>算法配置</span>
-			</a>
-			<a>
-				<img src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/xitongrizhi.png" id="log_icon">
-				<span>运行记录</span>
-			</a>
-			<a style="display: none;">
-				<img src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/mode.png" id="mode_icon">
-				<span>工程模式</span>
-			</a>
-		</div>
-
-		<div class="header_right">
-			<img src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/shezhi_icon.png" id="system_set_btn">
-		</div>
-	</div>
-
-	<div class="content_box">
-		<iframe src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/blank.htm" name="content" scrolling="auto" id="content_iframe" allowfullscreen="true" width="100%" height="100%" frameborder="no">
-			&lt;p&gt;您的浏览器不支持iframe标签&lt;/p&gt;
-		</iframe>
-	</div>
-
-
-<div id="system_set_box" style="display: none;">
-	<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-		<ul class="layui-tab-title">
-			<li class="" id="server_set" style="display: none;">服务器设置</li>
-			<li id="database_set" style="display: none;">数据库设置</li>
-			<!-- <li>云服务器配置</li> -->
-			<li class="layui-this">场景模板</li>
-			<li lay-id="22">账户权限</li>
-			<!-- <li>告警设置</li> -->
-			<li>数据导入导出</li>
-			<li>CAN转net盒子配置</li>
-			<li>关于软件</li>
-		</ul>
-		<div class="layui-tab-content">
-			<div class="layui-tab-item">
-				<div class="layui-form-item">
-					<label class="layui-form-label">log服务器地址：</label>
-					<input type="text" name="title" required="" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input" id="log_address">
-					<label class="layui-form-label">log服务器端口：</label>
-					<input type="text" name="title" required="" lay-verify="required" placeholder="请输入端口" autocomplete="off" class="layui-input" id="log_port">
-				</div>
-
-				<div class="layui-form-item">
-					<label class="layui-form-label">储存服务器地址：</label>
-					<input type="text" name="title" required="" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input" id="save_address">
-					<label class="layui-form-label">储存服务器端口：</label>
-					<input type="text" name="title" required="" lay-verify="required" placeholder="请输入端口" autocomplete="off" class="layui-input" id="save_port">
-				</div>
-			</div>
-
-			<div class="layui-tab-item">
-				<div class="layui-form-item">
-					<label class="layui-form-label">数据库导出：</label>
-					<input type="text" name="title" required="" lay-verify="required" placeholder="请选择保存文件目录" autocomplete="off" class="layui-input" style="width: 50%;">
-					<button class="layui-btn layui-btn-sm" style="margin-top: 4px;">选择保存目录</button>
-				</div>
-
-				<div class="layui-form-item">
-					<label class="layui-form-label">数据库导入：</label>
-					<input type="text" name="title" required="" lay-verify="required" placeholder="请选择备份文件" autocomplete="off" class="layui-input" style="width: 50%;" id="input_choose">
-					<button type="button" class="layui-btn layui-btn-sm" id="fileUpload_ku" style="margin-top: 4px;">
-						<i class="layui-icon"></i>选择文件
-					</button><input class="layui-upload-file" type="file" accept="" name="file">
-				</div>
-
-				<div class="layui-form-item">
-					<label class="layui-form-label">数据库自动备份：</label>
-					<input type="checkbox" id="backup" lay-filter="backup" lay-text="是/否" style="width: 24px;height: 24px;float: left;margin-top: 7px;">
-					<label class="layui-form-label" style="margin-left: 50px;">自动备份间隔：</label>
-					<input type="text" name="title" required="" lay-verify="required" placeholder="分钟" autocomplete="off" class="layui-input" style="width: 14.5%;" id="time">
-				</div>
-
-				<div class="layui-form-item">
-					<label class="layui-form-label">自动备份目录：</label>
-					<input type="text" name="title" required="" lay-verify="required" placeholder="请选择保存文件目录" autocomplete="off" class="layui-input" style="width: 50%;">
-					<button class="layui-btn layui-btn-sm" style="margin-top: 4px;">选择备份目录</button>
-				</div>
-			</div>
-
-			<!-- // 云服务器功能注释 -->
-				<!-- <div class="layui-tab-item" style="text-align: center;">
-				<div class="layui-form-item">
-					<input type="text" name="title" class="layui-input" id="cloud_id" style="display: none;">
-					<label class="layui-form-label">云服务器IP地址：</label>
-					<input type="text" name="title" required lay-verify="required" placeholder="请输入地址"
-						autocomplete="off" class="layui-input" id="cloud_ip_address">
-					<label class="layui-form-label">云服务器端口号：</label>
-					<input type="text" name="title" required lay-verify="required" placeholder="请输入端口"
-						autocomplete="off" class="layui-input" id="cloud_port_address">
-				</div>
-
-				<div class="layui-form-item">
-					<label class="layui-form-label">本地项目名称：</label>
-					<input type="text" name="title" required lay-verify="required" placeholder="请输入名称"
-						autocomplete="off" class="layui-input" id="local_name">
-					<label class="layui-form-label">本地项目UID：</label>
-					<input type="text" name="title" required lay-verify="required" placeholder="请输入id"
-						autocomplete="off" class="layui-input" id="local_id">
-				</div>
-				<button class="layui-btn" id="cloudsetting">配置</button>
-			</div> -->
-
-			<div class="layui-tab-item layui-show">
-				<div class="template_box">
-					<div class="layui-form-item" style="display:none;">
-						<!-- <label class="layui-form-label">DOT-C：</label>
-					    <input type="radio" name="stationType" value="0" class="inputCheckBox" id="DOT-C_switch">
-					    
-					    <label class="layui-form-label">DOT-S：</label>
-					    <input type="radio" name="stationType" value="1" class="inputCheckBox" id="DOT-S_switch"> -->
-						<label class="layui-form-label">网络连接方式：</label>
-						<select name="lan" id="lan" disabled="disabled">
-							<option value="1" selected="selected">网线</option>
-							<option value="0">无线</option>
-						</select>
-					</div>
-
-					<!-- <div class="layui-form-item">
-				    	<label class="layui-form-label">场景模式：</label>
-				    	<input type="text" name="" id="mode" value="" />
-				    </div>-->
-
-					<div class="layui-form-item">
-						<label class="layui-form-label">系统容量：</label>
-						<input type="text" name="" id="single_sys_capacity">
-					</div>
-
-					<div class="layui-form-item">
-						<label class="layui-form-label">基站系统频率：</label>
-						<input type="text" name="" id="bs_freq">
-					</div>
-
-					<!-- <div class="layui-form-item">
-				    	<label class="layui-form-label">终端系统频率：</label>
-				    	<input type="text" name="" id="tag_freq" value="" />
-				    </div> -->
-
-					<div class="layui-form-item">
-						<label class="layui-form-label">场端数据端口：</label>
-						<input type="text" name="" id="data_port">
-					</div>
-
-					<div class="layui-form-item">
-						<label class="layui-form-label">车端数据端口：</label>
-						<input type="text" name="" id="tag_data_port">
-					</div>
-
-					<!-- <div class="layui-form-item">
-				    	<label class="layui-form-label">拆卸报警开关：</label>
-				    	<input type="checkbox" name="switch" class="inputCheckBox" id="dismantle_switch">
-				    	
-				    	<label class="layui-form-label">按键报警开关：</label>
-				    	<input type="checkbox" name="switch" class="inputCheckBox" id="key_warning_switch">
-				    </div>
-				    
-				    <div class="layui-form-item">
-				    	<label class="layui-form-label">心率开关：</label>
-				    	<input type="checkbox" name="switch" class="inputCheckBox" id="heart_switch">
-				    	
-				    	<label class="layui-form-label">电量开关：</label>
-				    	<input type="checkbox" name="switch" class="inputCheckBox" id="battery_switch">
-				    </div>
-
-					<div class="layui-form-item">
-						<label class="layui-form-label">加密开关：</label>
-						<input type="checkbox" name="encryption_switch", class="inputCheckBox" id="encryption_switch"/>
-					</div> -->
-
-					<div class="layui-form-item" style="text-align: center;">
-						<button class="layui-btn layui-btn-sm" id="template_btn">保存设置</button>
-					</div>
-				</div>
-			</div>
-			<div class="layui-tab-item">
-				<button class="layui-btn management_btn" id="management_btn">开启管理员权限</button>
-			</div>
-
-			<!-- <div class="layui-tab-item">
-		       <div class="template_box">
-			        <div class="layui-form-item">
-			         	<h1>手环健康参数设置</h1>
-			        </div>
-			        <div class="layui-form-item">
-				         <label class="layui-form-label">数据保持时间：</label>
-				         <input type="text" name="" id="hold_time" value="" placeholder="秒" style="width: 130px;"/>
-			        </div>
-		        
-			        <div class="layui-form-item">
-			         <label class="layui-form-label">心率范围：</label>
-			         <input type="text" name="" id="heart_range_start" value="" style="width: 60px;"/>
-			         -
-			         <input type="text" name="" id="heart_range_end" value="" style="width: 60px;"/>
-			        </div>
-		        
-			        <div class="layui-form-item">
-			         <label class="layui-form-label">血压高压范围：</label>
-			         <input type="text" name="" id="high_blood_start" value="" style="width: 60px;"/>
-			         -
-			         <input type="text" name="" id="high_blood_end" value="" style="width: 60px;"/>
-			        </div>
-		        
-			        <div class="layui-form-item">
-			         <label class="layui-form-label">血压低压范围：</label>
-			         <input type="text" name="" id="low_blood_start" value="" style="width: 60px;"/>
-			         -
-			         <input type="text" name="" id="low_blood_end" value="" style="width: 60px;"/>
-			        </div>
-		        
-			        <div class="layui-form-item">
-			         <label class="layui-form-label">体温范围：</label>
-			         <input type="text" name="" id="body_temperature_start" value="" style="width: 60px;"/>
-			         -
-			         <input type="text" name="" id="body_temperature_end" value="" style="width: 60px;"/>
-			        </div>
-		        
-			        <div class="layui-form-item" style="text-align: center;">
-			         <button class="layui-btn layui-btn-sm" id="warn_set_btn">保存设置</button>
-			        </div>
-		       </div>
-		    </div> -->
-			<div class="layui-tab-item about-software">
-				<p><button class="layui-btn layui-btn-sm" id="batchDataImport">数据导入</button><input class="layui-upload-file" type="file" accept="" name="file"></p>
-				<p><button class="layui-btn layui-btn-sm" id="batchDataExport">数据导出</button></p>
-			</div>
-			<div class="layui-tab-item about-software">
-				<p><span style="line-height: 1.625rem;">localIP:</span><select id="server_local_ip" style="line-height: 1.625rem;"></select></p>
-				<p><button class="layui-btn layui-btn-sm" id="canToNetConfig">搜索盒子</button></p>
-			</div>
-			<div class="layui-tab-item about-software">
-				<p>软件名：K31LMP管理平台</p>
-				<p>软件版本：1.1.0.1</p>
-				<!--
-	    		<p>生产商：XXXX</p>
-	    		<p>联系电话：181294003030</p>
-	    		<p>公司地址：清水河</p>
-	    		-->
-			</div>
-
-		</div>
-	</div>
-</div>
-
-<div class="checkBox" style="display: none;">
-	<input type="password" name="title" placeholder="请输入密码" autocomplete="true" class="layui-input" id="passwordInput">
-	<div class="checkBox_btn">
-		<button class="layui-btn" id="checkBox_close">取消</button>
-		<button class="layui-btn" id="checkBox_cofirm">确认</button>
-	</div>
-</div>
-
-<div class="checkBox_manage" style="display: none;">
-	<input type="password" name="title" placeholder="请输入密码" autocomplete="true" class="layui-input" id="passwordInput_manage">
-	<!--<%&#45;&#45; <c:choose>
-			<c:when test="${requestScope.message == null }">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title>四川中电昆辰科技有限公司</title>
+	<style>
+ 
+	.div_top{
+			width:100%;
+			height:35px;
+			background-color:#FFF;	
+			}
+	.div_menu{
+		//width:100%;
+		//height:55px;	
+		float:right;
+		font-size:14px;
+		color:#555;
+		//text-align:center;
+		line-height:35px;
+		margin-top:2%;
+	}
+	.div_more{
+		width: 60px;
+      		height: 23px;
+   		color: #fff;	
+		background: #38f;
+   		line-height: 24px;
+		font-size:13px;
+		text-align:center;
+		border-bottom:1px solid #38f;
+		margin-left:10px;
+		margin-top:2%;	}	
+	.color-menu{
+		background-color:#FFF;
+	}
+	
+	.div_logo{
+				//height:100px;
+				width:100%;
+				text-align:center;
+				float:left;
+				margin-top:10%;
+				background-color:#FFF;
+			}
+	
+	
+	.div_text{
+				//height:30px;
+				width:45%;
+				float:left;
+			//	margin-top:7%;
+				background-color:#FFF;
+				text-align:center;
+				margin-left:33%;
+				margin-right:33%;
+	}
+	
+	.div_logo2{
+			//	height:100px;
+				width:100%;
+				float:left;
+				margin-top:7%;
+				background-color:#FFF;
+				text-align:center;
+			}
+	.div_foot{
+				width:100%;
+				height:40px;
+				margin-top:2%;
+			//	margin-left:10%;
+			//	background-color:#000;
+				float:left;
+				color:#999;
+				//clear:both;
+				text-decoration:none;
+				//text-align: center;
+				line-height: 22px;
+				font: 12px arial;	
+		}
+	.div_tail{
+				width:100%;
+			//	height:30px;
+				text-align: center;
+				line-height: 22px;
+				float:left;
+				color:#999;
+				font: 12px arial;
+				margin-top:1%;
 				
-			</c:when>
-			<c:otherwise>
-				<span><font color="red">${requestScope.message}</font></span>
-			</c:otherwise>
-		</c:choose> &#45;&#45;%>-->
-	<div class="checkBox_btn">
-		<button class="layui-btn" id="checkBox_cofirm_manage">确认</button>
-	</div>
+			}
+ 
+	.div_place{
+  	//	position:absolute;
+ 		// left:73.4%;
+ 		 //top:55.6%;
+ 	 }
+</style>
+	
+	
+</head>
+<style>
+    p {
+        /* 设置字体颜色 */
+        color: green;
+        /* 设置字体大小 */
+        font-size: 30px;
+   }
+</style>
+<body >	
+<div style="font-size:50px">
+	<a href="http://192.168.0.134:8080/kunchenapp/">k31</a>
 </div>
-<script>
-	var ctx = '/kunchenapp';
-</script>
-<script type="text/javascript" src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/jquery.cookie.js"></script>
-<script type="text/javascript" src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/msg_box.js"></script>
-<script type="text/javascript" src="K31LMP%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0_files/rem.js"></script>
-<script type="text/javascript">
-	var user;
-	var cloudId = "";
-	$(function () {
-		//   console.log("${sessionScope.user_session.loginname}");
-		user = "user";//$.cookie('user');
-		//   console.log(user)
-		if (user == 'user') {
-			$('#server_set').css('display', 'none');
-			$('#database_set').css('display', 'none');
-			$('.header_center a:eq(5)').css('display', 'none');
-		} else if (user == 'admin') {
-			$('#server_set').css('display', 'inline-block');
-			$('#database_set').css('display', 'inline-block');
-			$('.header_center a:eq(5)').css('display', 'inline-block');
-			$('.header_center a:eq(4)').css('border-right', 'none');
-			$('#management_btn').html('关闭管理员权限');
-			$('#management_btn').css('background', 'red');
-		} else {
-			$('#server_set').css('display', 'none');
-			$('#database_set').css('display', 'none');
-			$('.header_center a:eq(5)').css('display', 'none');
-		}
-
-		//   根据权限,添加选中效果
-		if (user == 'admin') {
-			$('.layui-tab-title li').eq(0).addClass('layui-this');
-			$('.layui-tab-content .layui-tab-item').eq(0).addClass('layui-show');
-		} else {
-			$('.layui-tab-title li').eq(2).addClass('layui-this');
-			$('.layui-tab-content .layui-tab-item').eq(2).addClass('layui-show');
-		}
-
-
-	})
-	$('.header_center a').click(function () {
-		$('.header_center a img').removeClass('nav_img_active');
-		$('.header_center a span').removeClass('nav_span_active');
-		$(this).find('img').addClass('nav_img_active');
-		$(this).find('span').addClass('nav_span_active');
-	})
-
-	$('.header_center a:eq(0)').click(function () {
-		content.location = '/kunchenapp/kcb/html/map';
-	})
-
-	$('.header_center a:eq(1)').click(function () {
-		content.location = '/kunchenapp/kcb/html/newLabel';
-	})
-
-	$('.header_center a:eq(2)').click(function () {
-		content.location = '/kunchenapp/kcb/html/newStation';
-	})
-
-	$('.header_center a:eq(3)').click(function () {
-		content.location = '/kunchenapp/kcb/html/engine';
-	})
-
-	$('.header_center a:eq(4)').click(function () {
-		content.location = '/kunchenapp/kcb/html/log';
-	})
-
-	$('.header_center a:eq(5)').click(function () {
-		//			content.location = '${ctx}/jsp/dot/project';
-		layer.open({
-			type: 1,
-			title: '请输入密码',
-			moveOut: true,
-			area: "300px",
-			skin: 'open_title_skin',
-			closeBtn: 2,
-			content: $('.checkBox') //这里content是一个普通的String
-		});
-
-		$('#checkBox_close').unbind('click');
-		//			取消事件
-		$('#checkBox_close').click(function () {
-			layer.closeAll();
-		})
-
-		$('#checkBox_cofirm').unbind('click');
-		//			确认事件
-		$('#checkBox_cofirm').click(function () {
-			//				密码验证
-			if ($('#passwordInput').val() == 123) {
-				content.location = '${ctx}/jsp/dot/project';
-				layer.closeAll();
-				$('#passwordInput').val('');
-			} else {
-				layer.msg('密码错误');
-			}
-		})
-	})
-
-	$('#system_set_btn').click(function () {
-		layer.open({
-			type: 1,
-			title: '系统设置',
-			skin: 'open_title_skin',
-			area: '700',
-			closeBtn: 2,
-			content: $('#system_set_box'), //这里content是一个普通的String
-		});
-		getServerLocalIP();
-		isAuth();
-
-		$('#backup').unbind('click');
-		//			自动备份选择框
-		$('#backup').click(function () {
-			console.log(this.checked)
-		})
-
-		//   开启管理员权限
-		$('#management_btn').unbind('click');
-		$('#management_btn').click(function () {
-			if ($(this).html() == '开启管理员权限') {
-				layer.open({
-					type: 1,
-					title: '请输入密码',
-					moveOut: true,
-					area: "300px",
-					skin: 'open_title_skin',
-					closeBtn: 2,
-					content: $('.checkBox_manage') //这里content是一个普通的String
-				});
-			} else {
-				//关闭管理员权限
-				//     发送权限user
-				/* $('#management_btn').html('开启管理员权限');
-				$('#management_btn').css('background','#009688');
-				$.cookie('user','user','7')
-				history.go(0) */
-				//    parent.location="${ctx}/dot/user/login?loginName=user";
-				login("user", '');
-			}
-
-			$('#checkBox_cofirm_manage').unbind('click');
-			$('#checkBox_cofirm_manage').click(function () {
-				//    密码验证
-				/* if($('#passwordInput_manage').val()==123){
-				 $('#management_btn').html('关闭管理员权限');
-				 $('#management_btn').css('background','red')
-				 //发送权限admin
-				 
-				 $.cookie('user','admin','7')
-				 history.go(0)
-	   	
-				}else{
-				 layer.msg('密码错误');
-				} */
-				login("admin", $('#passwordInput_manage').val());
-				//  parent.location="${ctx}/dot/user/login?loginName=admin&password=" + $('#passwordInput_manage').val();
-			})
-
-		})
-
-		var param = getSysConfig(ctx + '/kcb/system/getSystemConfig', {});
-		// 云服务器功能注释
-		// var cloudInfo = getSysConfig(ctx + '/kcb/system/getCloudServerClientLoginInfo', {});
-		// if(cloudInfo){
-		// 	// $('#cloud_id').val(cloudInfo.id);
-		//  cloudId = cloudInfo.id
-		// 	$('#cloud_ip_address').val(cloudInfo.serverHost);
-		// 	$('#cloud_port_address').val(cloudInfo.serverPort);
-		// 	$('#local_name').val(cloudInfo.projectName);
-		// 	$('#local_id').val(cloudInfo.projectNanoId);
-		// }
-		// console.log(param);
-		//			场景模板
-		//			属性初始化
-		if (param) {
-			// if (param.stationType == 0) {
-			// 	$('#DOT-C_switch').prop('checked',true);
-			// 	$('#DOT-S_switch').prop('checked',false);
-			// } else {
-			// 	$('#DOT-C_switch').prop('checked',false);
-			// 	$('#DOT-S_switch').prop('checked',true);
-			// }
-			// $('#mode').val(param.mode);
-			$('#single_sys_capacity').val(param.systemCapacity);
-			// $('#bs_freq').val(param.bs_freq);
-			// $('#tag_freq').val(param.tag_freq);
-			$('#lan').val(param.lan);
-			$('#bs_freq').val(param.systemFreq);
-			$('#data_port').val(param.dataPort);
-			$('#tag_data_port').val(param.tagDataPort);
-			// $('#dismantle_switch').prop('checked',/*false*/param.dismantle_switch);
-			// $('#key_warning_switch').prop('checked',/*false*/param.key_warning_switch);
-			// $('#heart_switch').prop('checked',/*false*/param.heart_switch);
-			// $('#battery_switch').prop('checked',/*false*/param.battery_switch);
-			// $('#encryption_switch').prop('checked', param.encryption_switch);
-		}
-		//云服务器功能注释
-		// $('#cloudsetting').unbind('click');
-		// //			保存事件
-		// $('#cloudsetting').click(function () {
-		// 	var param = {
-		// 		serverHost: $('#cloud_ip_address').val(),
-		// 		serverPort: $('#cloud_port_address').val(),
-		// 		projectName: $('#local_name').val(),
-		// 		projectNanoId: $('#local_id').val(),
-		// 		id: cloudId
-		// 	};
-		// 	setSysConfig(ctx + '/kcb/system/setCloudServerClientLoginInfo', param, true);
-		// })
-
-		$('#template_btn').unbind('click');
-		//			保存事件
-		$('#template_btn').click(function () {
-
-			var param = {
-				lan: $('#lan').val(),
-				systemFreq: $('#bs_freq').val(),
-				dataPort: $('#data_port').val(),
-				tagDataPort: $('#tag_data_port').val(),
-				systemCapacity: $('#single_sys_capacity').val()
-			};
-			setSysConfig(ctx + '/kcb/system/setSystemConfig', param);
-		})
-
-		// var ringCfgParam = getSysConfig('${ctx}/dot/sysCfg/getConfigRingParam',{});
-
-		// if (ringCfgParam) {
-		// 	$('#hold_time').val(ringCfgParam.hold_time);
-		// 	$('#heart_range_start').val(ringCfgParam.heart_rate_min);
-		// 	$('#heart_range_end').val(ringCfgParam.heart_rate_max);
-		// 	$('#high_blood_start').val(ringCfgParam.systolic_min);
-		// 	$('#high_blood_end').val(ringCfgParam.systolic_max);
-		// 	$('#low_blood_start').val(ringCfgParam.diastolic_min);
-		// 	$('#low_blood_end').val(ringCfgParam.diastolic_max);
-		// 	$('#body_temperature_start').val(ringCfgParam.temp_min);
-		// 	$('#body_temperature_end').val(ringCfgParam.temp_max);
-		// }
-
-		// $('#warn_set_btn').unbind('click');
-		// $('#warn_set_btn').click(function(){
-		// 	var param = {
-		// 		hold_time : $('#hold_time').val(),
-		// 		heart_rate_min : $('#heart_range_start').val(),
-		// 		heart_rate_max : $('#heart_range_end').val(),
-		// 		systolic_min : $('#high_blood_start').val(),
-		// 		systolic_max : $('#high_blood_end').val(),
-		// 		diastolic_min : $('#low_blood_start').val(),
-		// 		diastolic_max : $('#low_blood_end').val(),
-		// 		temp_min : $('#body_temperature_start').val(),
-		// 		temp_max : $('#body_temperature_end').val()
-		// 	};
-		// 	setSysConfig('${ctx}/dot/sysCfg/setConfigRingParam',param);
-		// });
-	})
-
-	layui.use('element', function () {
-		var element = layui.element;
-	})
-
-	layui.use('upload', function () {
-		var upload = layui.upload;
-
-		//执行实例
-		var uploadInst = upload.render({
-			elem: '#fileUpload_ku' //绑定元素
-			, url: '/upload/' //上传接口
-			, accept: 'file'
-			, auto: false
-			, choose: function (obj) {
-				obj.preview(function (index, file, result) {
-					console.log(file.name); //得到文件对象
-					$('#input_choose').val(file.name)
-				});
-			}
-			, done: function (res) {
-				//上传完毕回调
-			}
-			, error: function () {
-				//请求异常回调
-			}
-		});
-	});
-	//		左侧导航弹出文字提示
-	//		function show(id,msg){
-	//			layer.tips(msg,"#"+id+"",{
-	//				tips: [4,'#ff4800'],
-	//				time: 1000
-	//			})
-	//		}
-
-	//		新增事件
-	//		$('#content_iframe').contents().find(".mapDelete_btn").click(function(){
-	//			console.log('aaaa')
-	//		})
-
-	function getSysConfig(url, param) {
-		var index = layer.msg('正在获取数据', {
-			time: 0, //10s后自动关闭
-			//  btn: ['明白了', '知道了', '哦']
-			shade: 0.1,
-		});
-		var rel;
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: param,
-			timeout: 8000,
-			dataType: "json",
-			async: false,
-			success: function (data, status, xhr) {
-				//var msgJson = eval(data); dataType为json，就不用转了
-				layer.close(index);
-				if (status == "success") {
-					//				console.log(data);
-					if (data) {
-						if (data.error == 0) {
-							//	layer.alert("设置成功");
-							rel = data.user;
-						} else {
-							layer.alert("错误！错误码：" + data.error + "," + data.msg);
-						}
-					}
-				} else {
-					layer.alert("失败！");
-				}
-			},
-			error: function (data, status, xhr) {
-				layer.close(index);
-				if (status == "timeout") {
-					layer.alert("超时!");
-				} else {
-					layer.alert("操作失败！");
-				}
-			}
-		});
-		return rel;
-	}
-
-	function setSysConfig(url, param, isRestart = false) {
-		layer.msg('正在设置', {
-			time: 0, //10s后自动关闭
-			//  btn: ['明白了', '知道了', '哦']
-			shade: 0.1,
-		});
-
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: param,
-			timeout: 8000,
-			dataType: "json",
-			success: function (data, status, xhr) {
-				//var msgJson = eval(data); dataType为json，就不用转了
-				if (status == "success") {
-					//				console.log(data);
-					if (data) {
-						if (data.error == 0) {
-							if(isRestart){
-								layer.alert("设置成功，请手动重启本地服务器！");
-							}else{
-								layer.alert("设置成功");
-							}
-							
-						} else {
-							layer.alert("错误！错误码：" + data.error + "," + data.msg);
-						}
-					}
-				} else {
-					layer.alert("失败！");
-				}
-			},
-			error: function (data, status, xhr) {
-				if (status == "timeout") {
-					layer.alert("超时!");
-				} else {
-					layer.alert("操作失败！");
-				}
-			}
-		});
-	}
-
-	function login(user, password) {
-		layer.msg('正在登陆', {
-			time: 0, //10s后自动关闭
-			//  btn: ['明白了', '知道了', '哦']
-			shade: 0.1,
-		});
-		$.ajax({
-			url: ctx + "/user/login",
-			type: "POST",
-			data: {
-				loginName: user,
-				password: password
-			},
-			timeout: 8000,
-			dataType: "json",
-			success: function (data, status, xhr) {
-				//var msgJson = eval(data); dataType为json，就不用转了
-				if (status == "success") {
-					//				console.log(data);
-					if (data) {
-						if (data.error == 0) {
-							//	layer.alert("成功");
-							parent.location = "/kunchenapp";
-						} else {
-							layer.alert("错误！错误码：" + data.error + "," + data.msg);
-						}
-					}
-				} else {
-					layer.alert("失败！");
-				}
-			},
-			error: function (data, status, xhr) {
-				if (status == "timeout") {
-					layer.alert("超时!");
-				} else {
-					layer.alert("操作失败！");
-				}
-			}
-		});
-	}
-
-	function isAuth() {
-		$.ajax({
-			url: ctx + "/user/isAuth",
-			type: "POST",
-			data: {
-
-			},
-			timeout: 6000,
-			dataType: "json",
-			async: false,
-			success: function (data, status, xhr) {
-				//var msgJson = eval(data); dataType为json，就不用转了
-				if (status == "success") {
-					//				console.log(data);
-					if (data) {
-						if (data.error == 0) {
-							if (user != 'admin') {
-								parent.location = ctx;
-							}
-						} else {
-							if (user == 'admin') {
-								parent.location = ctx;
-							}
-						}
-					}
-				} else {
-					layer.alert("失败！");
-				}
-			},
-			error: function (data, status, xhr) {
-				if (status == "timeout") {
-					layer.alert("超时!");
-				} else {
-					layer.alert("操作失败！");
-				}
-			}
-		});
-	}
-
-	//		  导入数据
-	layui.use('upload', function () {
-		var upload = layui.upload;
-
-		//执行实例
-		upload.render({
-			elem: '#batchDataImport', //绑定元素
-			url: ctx + '/batchIE/importData', //上传接口
-			accept: 'file',
-			choose: function (obj) {
-				// var files = obj.pushFile();
-				var files = this.files = obj.pushFile();
-				obj.preview(function (index, file, result) {
-
-				});
-				//导入数据时，需要回到默认首页，防止其他页面仍在向后台请求数据，从而导致一些莫名报错
-				content.location = '/kunchenapp/kcb/html/blank';
-				$('.header_center a img').removeClass('nav_img_active');
-				$('.header_center a span').removeClass('nav_span_active');
-
-				layer.msg('正在导入数据', {
-					time: 0, //
-					//  btn: ['明白了', '知道了', '哦']
-					shade: 0.1,
-				});
-			},
-			done: function (res, index, upload) {
-				//上传完毕回调
-				if (res) {
-					if (res.error == 0) {
-						layer.alert("导入成功");
-					} else {
-						layer.alert("错误！错误码：" + res.error + "," + res.msg);
-					}
-				}
-				if (this.files)
-					delete this.files[index];
-			},
-			error: function (index, upload) {
-				//请求异常回调
-				layer.alert("操作失败！");
-				if (this.files)
-					delete this.files[index];
-			}
-		});
-	});
-
-	// 导出数据
-	$('#batchDataExport').click(function () {
-		var url = ctx + "/batchIE/export";
-		var form = $("<form></form>").attr("action", url).attr("method", "post");
-		form.appendTo('body').submit().remove();
-	})
-
-	function getServerLocalIP() {
-		$.ajax({
-			url: ctx + '/kcb/station/getTftpServerIp',
-			type: "POST",
-			data: {},
-			timeout: 20000,
-			dataType: "json",
-			//			async : false,
-			success: function (data, status, xhr) {
-				//var msgJson = eval(data); dataType为json，就不用转了
-				if (status == "success") {
-					//					console.log(data);
-					if (data) {
-						if (data.error == 0) {
-							//	layer.alert("更新成功");
-							var ip_value = $('#server_local_ip').val();
-							$('#server_local_ip').children().remove();
-							var ip_option = '<option value="">请选择</option>';
-							for (var ip of data.user) {
-								ip_option += '<option value="' + ip + '">' + ip + '</option>';
-							}
-							$('#server_local_ip').append(ip_option);
-							if (ip_value && ip_value.length > 1) {
-								$('#server_local_ip').val(ip_value);
-							}
-						} else {
-							layer.alert("错误！错误码：" + data.error + "," + data.msg);
-						}
-					}
-				} else {
-					layer.alert("获取数据失败！程序异常，请联系技术工程师");
-				}
-			},
-			error: function (data, status, xhr) {
-				if (status == "timeout") {
-					console.log("连接超时!请检查网络是否异常或后台服务是否开启");
-				} else {
-					// layer.alert("操作失败！");
-					if (data.readyState == 0) {
-						layer.alert("无法访问！请检查网络是否异常或后台服务是否开启");
-					} else {
-						if (data.status == 200) {
-							layer.alert("程序异常，请联系技术工程师");
-						} else {
-							layer.alert("访问出错！" + data.status + "," + data.statusText);
-						}
-					}
-				}
-			}
-		});
-	}
-
-	$('#canToNetConfig').click(function(){
-		var local_ip = $('#server_local_ip').val();
-		if (local_ip == '') {
-			layer.alert("请选择IP");
-			return;
-		}
-		$.ajax({
-			url: ctx + '/kcb/common/getCanToNetBoxIP?local_ip='+local_ip+'&port=5000',
-			type: "GET",
-			data: {},
-			timeout: 20000,
-			dataType: "json",
-			//			async : false,
-			success: function (data, status, xhr) {
-				//var msgJson = eval(data); dataType为json，就不用转了
-				if (status == "success") {
-					//					console.log(data);
-					if (data) {
-						if (data.error == 0) {
-							//	layer.alert("更新成功");
-							var ips = data.user;
-							if (ips) {
-								ips.forEach((item,index)=>{
-									openCanToNetConfig(item);
-								});
-							}
-							// openCanToNetConfig(data.user);
-						} else {
-							layer.alert("错误！错误码：" + data.error + "," + data.msg);
-						}
-					}
-				} else {
-					layer.alert("获取数据失败！程序异常，请联系技术工程师");
-				}
-			},
-			error: function (data, status, xhr) {
-				if (status == "timeout") {
-					console.log("连接超时!请检查网络是否异常或后台服务是否开启");
-				} else {
-					// layer.alert("操作失败！");
-					if (data.readyState == 0) {
-						layer.alert("无法访问！请检查网络是否异常或后台服务是否开启");
-					} else {
-						if (data.status == 200) {
-							layer.alert("程序异常，请联系技术工程师");
-						} else {
-							layer.alert("访问出错！" + data.status + "," + data.statusText);
-						}
-					}
-				}
-			}
-		});
-	})
-
-	function openCanToNetConfig(ip) {
-		var element = document.createElement('a');
-		element.setAttribute('href', 'http://' + ip);
-		element.setAttribute('target', "_blank");
-
-		element.style.display = 'none';
-		document.body.appendChild(element);
-
-		element.click();
-
-		document.body.removeChild(element);
-	}
-
-</script>
-
-</body></html>
+ 
+</body>
+</html>
